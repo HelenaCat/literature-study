@@ -1,0 +1,66 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+\textsc{\LARGE KU Leuven}\\[1.5cm] % Name of your university/college
+\textsc{\Large Literature study: dashboards}\\[0.5cm] % Major heading such as course name
+\textsc{\large Alcatel-Lucent internship}\\[0.5cm] % Minor heading such as course title
+
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Literature study on dashboards}\\[0.4cm]
+\HRule \\[1.5cm]
+ 
+
+\Large \emph{Author:}\\
+Helena \textsc{Brekalo}\\[3cm]
+
+{\large \today}\\[3cm] % Date
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+A dashboard is a tool to quickly show information at a glance. Their purpose is to have the "reader" gather information without having to look things up; everything should be clear by having a quick look at the dashboard. This is what the Jenkins dashboard lacks: in order to see what builds failed/succeeded, you need to find the build you're looking for and then check its status. It is clear from the -lack of- its use that this way of displaying the information does not suffice, since the TV dashboard is not/barely used but every employer looks up the dashboard on their own PC every once in a while. 
+The purpose of this literature study is to create Jenkins awareness, so the developers can take a look at the TV dashboard a few times a day and have them see how the project is proceeding.
+One of the most important things is that the information displayed on the dashboard can be easily interpreted. This means that you don't want a cluttered dashboard with too much information so it becomes unclear.
+Stephen Few has written an excellent article on the topic, with the main conclusions being that you don't want to show too much information and that you should keep the information simple, colors should be used sparingly or they will mean nothing at all, visuals should be useful, not overwhelming or distracting and the information represented should be accurate, so you should make sure the information is displayed correctly and with enough context. This last remark is also made by Matthew Skelton, who shows that if you only show the failed builds, people will start to ignore the 'alarm signals' the dashboard should display and perform less well compared to when a context is shown, also showing the succeeding builds. Few’s theory is backed up by the people at Geckoboard, who have made a blog consisting of 6 parts, referencing to Few, but also adding some rules of thumb. Every article listed in the appendix refers to Few’s article and some make additional remarks. One of them is that it’s very important to keep your audience in mind, the board of directors will want to see different metrics represented in the dashboard than, say, the people of human resources. In the case of software developers, they’ll want to see metrics about the build status of the different jobs. Related to this is that not every dashboard will need the same layout and look. In the case of the Jenkins dashboard, charts won’t tell you much, since it doesn’t really tell anything about the status of the last build. Below, the example of the Jenkins dashboard is further explained and a proposal is made that conforms to the guidelines of a good dashboard.
+
+Improving the current dashboard
+Jenkins
+The Jenkins dashboard displays a list of the builds of a project, together with a colored dot and a "weather report". The dot displays information about the last build, the color indicating whether it failed or succeeded and a flashing dot meaning the build is still in progress. The color of the dot at that time then refers to the last finished build.
+The weather report tells you something about the stability of the builds. If the weather looks good, then the build is stable. The worse the weather gets the less stable the build is. This way, you get an overall view about the stability of the different build jobs.
+ 
+These two things give you a fairly good overview, but the downside of the dashboard is that you have to be right in front of the screen to see what job the colored dot and the weather report are referring to. The details of the build job are in plain text, so if you want to project it on a TV screen, people will have a hard time knowing what builds are doing well and which ones aren't.
+There are plug-ins available that show a dashboard, but they none of them comply with the most important rules described above: they're either too crowded or use too much color, distracting the viewer from what's really important.
+  
+The proposed images comply with the design problems to be avoided as proposed by Stephen Few:
+•	Too much complexity
+•	Too many alert conditions
+•	Alerts that cannot be differentiated
+•	Overwhelming visuals
+•	Distracting visuals
+•	Inappropriate visual salience
+•	Mismatch between information and its visual representation
+•	Indirect expression of measures
+•	Not enough context.
+The images show the build stability together with the success or failure of the last build and show the name of the build clearly. It's also possible to add a timestamp of when the last success and failure was and the last duration at the bottom of the tiles, as shown in the second tile. If you have color blind people in your team (as Few pointed out might happen), you could replace the green dot by a very light red dot, indicating it doesn't need attention, as shown in the first picture.
+This could be realized using existing Jenkins plug-ins and changing them. The Radiator View  seems like a good basis.
+An alternative could be to implement already existing software like Dashing , which provides the tools to generate dashboards very easily. Instead of showing the weather as proposed, color codes may be used for the tile backgrounds, either representing the status of the last build or the status of the past builds. A combination is also possible where the color represents the status of the last build and an opaque weather report image as the background. An example is given below :
+ 
+The colors aren’t too overwhelming and they’re meaningful, since people are used to the colored dots in the Jenkins dashboard. 
+A third, less tile-oriented dashboard is Team Dashboard . It also supports Jenkins plug-ins.
+
+
+
+
+\end{document}
